@@ -1,4 +1,3 @@
-<?php include("../html/inc/core.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,22 +56,7 @@
             </div>
         </div>
 <!-- BROWSER -->
-        <div class="browser"><div class="browserCount" style="color:white; text-align:center; font-weight:bold; padding:10px; margin-top:40px; font-size:1.7em;">
-		<?php /*
-		$serve = "http://".$_SERVER['HTTP_HOST']."/resources/getServers.php";
-		$servers = get_url($serve);
-        if ($servers !== FALSE AND $servers !== NULL) {
-    		$list = json_decode($servers, 1);
-    		$totalServers = count($list);
-    		$totalPlayers = 0;
-    		foreach($list as $srv) {
-                if ($srv['numPlayers']) {
-                    $totalPlayers += $srv['numPlayers'];
-                }
-    		} 
-    		echo "".$totalPlayers." gamers playing in ".$totalServers." servers";
-        } */
-		?></div>
+        <div class="browser"><div class="browserCount" style="color:white; text-align:center; font-weight:bold; padding:10px; margin-top:40px; font-size:1.7em;"></div>
             <div class="browser_container">
                 <div class="browser_container_spacer"></div>
                 <div class="browser_slots">
