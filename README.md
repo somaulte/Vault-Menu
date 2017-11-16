@@ -12,3 +12,5 @@ TODO for 0.6:
 - sometype of match-making system by auto-joining non-announced servers
 - friends list working with fileshare, displays who's online & in which server etc
 ```
+
+`Credits: Twigzie for base design & structure. soular00t for design/script cleanup.`
