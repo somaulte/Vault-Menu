@@ -1,0 +1,1234 @@
+/*=================================================*/
+/*=                     BASE                      =*/
+/*=================================================*/
+
+* {
+    margin: 0; 
+    padding: 0;
+    user-select: none;
+    font-size: 12px;
+    font-family: 'Conduit ITC';
+    cursor: default;
+    pointer-events: none;
+}
+
+body {
+    background-color: rgb(19, 19, 19);
+    background-image: url(http://halo.bungie.net/images/dark/upper_neb.png), url(http://halo.bungie.net/images/dark/lower_neb.png);
+    background-position: top, bottom;
+    background-repeat: no-repeat, no-repeat;
+    background-size: auto, auto;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+} 
+::-webkit-scrollbar-track {
+    background-color: transparent;
+} 
+::-webkit-scrollbar-thumb {
+    background-color: rgb(80, 80, 80);
+}
+
+/*=================================================*/
+/*=                     MAIN                      =*/
+/*=================================================*/
+
+.main {
+	display:block;
+	margin: 0 auto;
+    box-shadow: 0 0 52px 11px black;
+	max-width: 1322px;
+	width:70%;
+    position: relative;
+    box-sizing: border-box;
+    background-color: rgba(20,20,20, 0.7);
+    background-image: url(img/over.png);
+	background-position: top center;
+    overflow: hidden;
+    border: 1px solid rgba(120,120,120, 0.5);
+}
+    .main span[id=title] { 
+        color: white;
+        bottom: 0px;
+        position: absolute;
+        text-shadow: 0 0 10px black;
+    }
+    .main_title_version {
+        left: 0px;
+        margin: 0px 0px 10px 10px;
+    }
+    .main_title_dewrito {
+        right: 0px;
+        margin: 0px 10px 10px 0px;
+    }
+
+.content_navigation {
+	max-width: 1322px;
+    z-index: 100;
+	display: block;
+	width:70%;
+	font-size:13px;
+    background-color: #1d1d1d;
+    box-shadow: 0 2px 10px 0px #161616;
+    position: fixed;
+    top:0px;
+    float:center;
+    margin:0 auto;
+}
+
+    .content_navigation_container {
+        flex: 1;
+        width: 100%;
+        background-color: #1d1d1d;
+        text-align: center;
+        text-transform: uppercase;
+    }
+        .content_navigation ul {
+            display: flex;
+            list-style: none;
+        }
+            .content_navigation ul li {
+                width: 110px;
+                display: block;
+                color: #bababa;
+                box-sizing: border-box;
+                text-shadow: 0px 1px 10px #878787;
+                -webkit-transition: all .2s ease-in-out;
+                -moz-transition: all .2s ease-in-out;
+                    -o-transition: all .2s ease-in-out;
+                        transition: all .2s ease-in-out;
+            }
+            .content_navigation ul li:hover {
+                color: #d5d5d5;
+                background: #242424;
+                text-shadow: 0px 1px 10px #0e0e0e;
+                border-bottom: 1px solid #c3c3c3;
+                box-shadow: 0 3px 10px #161616;
+                cursor: pointer;
+            }
+            .content_navigation ul li.selected {
+                color: #b7b7b7;
+                background: #1d1d1d;
+                box-shadow: inset 0 1px 9px 0px #000000;
+                text-shadow: 0 1px 10px #000000;
+            }
+            .content_navigation ul li.hidden {
+                display: none;
+            }
+                .content_navigation ul li i {
+                    margin-right: 5px;
+                    position: relative;
+                    top: -1px;
+                }
+            .content_navigation_header {
+                padding: 0px 0px 0px 20px;
+                height: 30px;
+                box-shadow: 0 2px 10px 0px #161616;
+            }
+                .content_navigation_header li {
+                    line-height: 30px;
+                }
+                    .content_navigation_header li i {
+                        font-size: 8px;
+                    }
+
+    .content_login { 
+        top: 0px;
+        right: 0px;
+        width: 45px;
+        height: 45px;
+        margin: 5px 20px 5px 0px;
+        position: absolute;
+        border: 1px solid #232323;
+        box-sizing: border-box;
+        transition: all 0.2s ease-in-out;
+    }
+    .content_login.logged {
+        width: 200px;
+    }
+    .content_login:not(.logged) {
+        width: 45px;
+    }
+        .content_login_container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background-color: brown;
+        }
+            .content_login_header { 
+                height: 100%;
+                display: flex;
+                background-color: #1d1d1d;
+            }
+                .content_login_header_avatar { 
+                    width: 43px;
+                    cursor: pointer;
+                    background-color: #7b7b7b;
+                }
+                .content_login_header_container { 
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    opacity: 0;
+                    box-shadow: inset 0 0 10px black;
+                    transition: opacity 0.2s ease-in 0.2s;
+                }
+                .content_login_header_container.logged {
+                    opacity: 1;
+                }
+                .content_login_header_container:not(.logged) {
+                    opacity: 0;
+                }
+                    .content_login_header_title { 
+                        flex: 1;
+                        line-height: 21.5px;
+                        font-size: 20px;
+                        padding-left: 5px;
+                        max-width: 150px;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        color: #d8d8d8;
+                        text-shadow: 0 0 4px black;
+                        text-transform: uppercase;
+                    }
+                    .content_login_header_active { 
+                        flex: 1;
+                        line-height: 21.5px;
+                        padding-left: 5px;
+                        max-width: 150px;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        color: #d8d8d8;
+                        text-shadow: 0 0 4px black;
+                        text-transform: uppercase;
+                    }
+                    .content_login_header_login { 
+                        flex: 1;
+                        line-height: 21.5px;
+                        font-size: 15px;
+                        padding-left: 5px;
+                        text-shadow: 0 0 4px black;
+                        text-transform: uppercase;
+color:#999;
+                    }
+            .content_login_dropdown { 
+                top: 50px;
+                right: 0px;
+                width: 225px;
+                height: 275px;
+                position: absolute;
+                box-sizing: border-box;
+                border: 1px solid rgb(121, 121, 121);
+                background-color: #1d1d1d;
+                overflow: hidden;
+                opacity: 0;
+                visibility: hidden;
+                box-shadow: 0 5px 17px 0px black;
+                transform: translateY(-100%);
+                transition: opacity 0.3s, transform 0.3s;
+            }
+            .content_login_dropdown.active { 
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+            .content_login_dropdown:not(.active) { 
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-100%);
+            }
+                .login_dropdown_panel { 
+                    width: 100%;
+                    height: 100%;
+                    padding: 20px;
+                    box-sizing: border-box;
+                }
+                    .login_dropdown_panel_container { 
+                        margin: auto auto;
+                        display: flex;
+                        flex-direction: column;
+                    }
+                        .login_dropdown_username, .login_dropdown_password { 
+                            outline: none;
+                            margin-bottom: 10px;
+                            background-color: #1d1d1d;
+                            border: 1px solid #878787;
+                            color: white;
+                            padding-left: 4px;
+                            font-size: 15px;
+                            cursor: text;
+                        }
+                        .login_dropdown_username:hover, .login_dropdown_password:hover {
+                            background-color: #333333;
+                            border: 1px solid #a9a9a9;
+                        }
+                        .login_dropdown_submission { 
+                            flex: 1;
+                            margin: 25px 0px 0px 0px;
+                            line-height: 25px;
+                            text-align: center;
+                            background-color: #1d1d1d;
+                            box-sizing: content-box;
+                            border: 1px solid #878787;
+                            text-shadow: 0px 1px 10px #878787;
+                            font-size: 10px;
+                            color: #bababa;
+                            cursor: pointer;
+                        }
+                        .login_dropdown_submission:hover {
+                            color: #ececec;
+                            text-shadow: 0 0 5px #101010;
+                            background-color: #333333;
+                            border: 1px solid #a9a9a9;
+                        }
+
+/*=================================================*/
+/*=                   BROWSER                     =*/
+/*=================================================*/
+
+.browser {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    float:center;
+    box-sizing: border-box;
+    transition:  all 0.5s ease-in-out;
+}
+    .browser.toggled {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    .browser:not(.toggled) {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-100%);
+    }
+    .browser_container { 
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+        .browser_container_spacer {
+            height: 0px;
+			margin-top:15px;
+        }
+
+.browser_slots {
+    width:100%;
+	min-height:100%;
+    display: block;
+    margin: 0 auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    pointer-events: auto;
+}
+.browser_slots::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+.browser_slots::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+    .browser_slot {
+        max-width: 33%;
+        width:33%;
+        height: 200px;
+        position: relative;
+        float: left;
+        box-sizing: border-box;
+        padding-bottom: 7px;
+		padding-left: 7px;
+    }
+        .browser_slot_outer {
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgb(120, 120, 120);
+            position: relative;
+        }
+            .browser_slot_img {
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                background-color: rgb(20, 20, 20);
+                transition: all 0.2s ease-in-out;
+                cursor: pointer;
+                pointer-events: auto;
+            }
+                .browser_slot_img.selected {
+                    opacity: 1;
+                }
+                .browser_slot_img:not(.selected) {
+                    opacity: 0.6;
+                }
+        .browser_slot_content {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+            .browser_slot_header {
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 30px;
+                position: absolute;
+                background-color: #1f1f1f;
+                opacity: 0.8;
+                pointer-events: auto;
+            }
+                .browser_slot_header_content {
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                    display: inline-flex;
+                }
+                    .browser_slot_name {
+                        color: #dadada;
+                        line-height: 30px;
+                        flex: 1;
+                        margin-left: 5px;
+                        margin-right: 5px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        max-width: 410px;
+                        text-shadow: 0 0 10px #000000;
+                        font-size: 13px;
+                    }
+                    .browser_slot_ping {
+                        width: 19px;
+                        height: 16px;
+                        margin: 7px 7px 0px 0px;
+                        pointer-events: auto;
+                    }
+                    .browser_slot_favi {
+                        width: 16px;
+                        height: 16px;
+                        margin: 7px 7px 0px 0px;
+                        cursor: pointer;
+                        pointer-events: auto;
+                    }
+				.browser_slot_basic_details {
+                        left: 5px;
+                        bottom: 17px;
+                        max-width: 244px;
+                        max-height: 10px;
+                        position: absolute;
+                        text-align: left;
+                        font-size: 10px;
+                        text-shadow: 0 0 15px #000000;
+                        transition: all 0.2s ease-in-out;
+				}
+					.browser_slot_basic_details.selected {
+						bottom: 25px;
+						left: 60px;
+						opacity: 1;
+					}
+					.browser_slot_basic_details:not(.selected) {
+                        left: 5px;
+						bottom: 10px;
+						opacity: 0.3;
+					}
+                    .browser_slot_type, .browser_slot_space, .browser_slot_map {
+                        font-size: 13px;
+                        float: left;
+                        display: block;
+                        line-height: 15px;
+                        margin-top: 5px;
+                        margin-left: 5px;
+                        color: white;
+                        text-shadow: 0 0 10px #bfbfbf;
+                    }
+                    .browser_slot_type {
+                        max-width: 140px;
+                        max-height: 15px;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+                    .browser_slot_space {
+                        font-size: 10px;
+                        float: left;
+                        color: #d6d6d6;
+                        display: block;
+                    }
+                    .browser_slot_map {
+                        max-width: 140px;
+                        max-height: 15px;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+            .browser_slot_footer {
+                left: 0px;
+                bottom: 0px;
+                width: 100%;
+                height: 60px;
+                position: absolute;
+                background-color: #1f1f1f;
+                opacity: 0.7;
+                transition: all 0.2s ease-in-out;
+				z-index:100;
+            }
+                .browser_slot_footer_content {
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                    overflow: hidden;
+                }
+                    .browser_slot_type_name, .browser_slot_space_name, .browser_slot_map_name {
+                        font-size: 13px;
+                        float: right;
+                        display: block;
+                        line-height: 15px;
+                        margin-top: 5px;
+                        margin-right: 5px;
+                        color: #d6d6d6;
+                        text-shadow: 0 0 10px #bfbfbf;
+                    }
+                    .browser_slot_type_name {
+                        max-width: 140px;
+                        max-height: 15px;
+                        text-overflow: ellipsis;
+						text-align:left;
+                        overflow: hidden;
+                    }
+                    .browser_slot_space_name {
+                        font-size: 10px;
+                        float: right;
+                        display: block;
+                    }
+                    .browser_slot_map_name {
+                        max-width: 140px;
+                        max-height: 15px;
+                        text-overflow: ellipsis;
+						text-align:right;
+						float:right;
+                        overflow: hidden;
+                    }
+                    .browser_slot_players {
+                        right: 0px;
+                        bottom: 10px;
+                        max-width: 244px;
+                        max-height: 85px;
+                        margin: 5px;
+                        position: absolute;
+                        text-align: right;
+                        font-size: 80px;
+                        color: #d6d6d6;
+                        text-shadow: 0 0 10px #000000;
+                        transition: all 0.2s ease-in-out;
+                    }
+                        .browser_slot_players.selected {
+                            bottom: 55px;
+                            opacity: 0.5;
+                        }
+                        .browser_slot_players:not(.selected) {
+                            bottom: 0px;
+                            opacity: 0.3;
+                        }
+                    .browser_slot_private, .browser_slot_sprint, .browser_slot_assass, .browser_slot_teams, .browser_slot_voice {
+                        bottom: 0px;
+                        max-height: 20px;
+                        position: absolute;
+                        margin: 7px;
+                    }
+                        .browser_slot_voice {
+                            right: 0px;
+                        }
+                        .browser_slot_sprint {
+                            right: 27px;
+                        }
+                        .browser_slot_assass {
+                            right: 54px;
+                        }
+                        .browser_slot_teams {
+                            right: 81px;
+                        }
+                        .browser_slot_private {
+                            right: 108px;
+                        }
+                    .browser_slot_variant {
+                        left: 0px;
+                        bottom: 0px;
+                        width: 50px;
+                        height: 50px;
+                        margin: 5px;
+                        opacity: 0.5;
+                        position: absolute;
+                    }
+            .browser_slot_footer.selected {
+                height: 60px;
+            }
+            .browser_slot_footer:not(.selected) {
+                height: 0px;
+            }
+
+/*=================================================*/
+/*=                    LOBBY                     =*/
+/*=================================================*/
+
+.lobby {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    padding: 10px;
+    box-sizing: border-box;
+    opacity: 0;
+    visibility: hidden;
+	z-index:1;
+    transform: translateY(-100%);
+    transition: all 0.5s ease-in-out;
+}
+    .lobby.toggled {
+        opacity: 1;
+		z-index:100;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    .lobby:not(.toggled) {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-100%);
+    }
+    .lobby_container { 
+        width: 100%;
+        height: 100%;
+        position: relative;
+        cursor: pointer;
+        padding: 5px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        background-color: rgba(20,20,20, 0.9);
+        background-image: url(img/over.png);
+        box-shadow: 0 0 52px 11px black;
+        border: 1px solid rgba(120,120,120, 0.5);
+    }
+
+        .lobby_info_container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+            .lobby_info_title {
+                font-size: 27px;
+                padding: 10px;
+				width:90%;
+				text-align:center;
+				overflow-x:scroll;
+				margin:0 auto;
+                position: relative;
+                overflow: hidden;
+                color: #999;
+				background-color:rgba(25,25,25,0.0);
+                text-shadow: 0 0 10px #717171;
+            }
+            .lobby_info_header {
+                height: 320px;
+                margin: 30px;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 0 30px 5px black;
+                color: #848484;
+                background-color: #232323;
+                text-shadow: 0 0 10px #717171;
+            }
+                .lobby_info_img { 
+                    top: 0px;
+                    left: 0px;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                }
+                .lobby_info_mapinfo { 
+                    top: 0px;
+                    left: 50%;
+                    width: 50%;
+                    height: 100%;
+                    position: absolute;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    box-shadow: 0 0 30px 6px black;
+                    box-sizing: border-box;
+                    padding: 5px;
+                    display: flex;
+                    flex-direction: column;
+                    background-image: url(img/player/bars/overlay.png);
+                }
+                    .lobby_maptype_container {
+                        display: flex;
+                        flex-direction: column;
+                        margin-left: 10px;
+                        margin-right: 10px;
+                        padding-bottom: 10px;
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                    }
+                        .lobby_maptype_name { 
+                            display: block;
+                            flex: 1;
+                            font-size: 15px;
+                            font-family: Conduit ITC;
+                            color: #a2a2a2;
+                            text-shadow: 0 0 11px #6b6b6b;
+                        }
+                        .lobby_maptype_type { 
+                            display: block;
+                            flex: 1;
+                            font-size: 25px;
+                            font-family: Conduit ITC;
+                            color: #d2d2d2;
+                            text-shadow: 0 0 10px #828282;
+                            margin-top: 20px;
+                        }
+                    .lobby_mapinfo_container { 
+                        display: flex;
+                        flex-direction: column;
+                        margin-top: 10px;
+                        margin-left: 10px;
+                        margin-right: 10px;
+                        padding-bottom: 10px;
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                    }
+                        .lobby_mapinfo_game_name { 
+                            display: block;
+                            flex: 1;
+                            font-size: 20px;
+                            font-family: Conduit ITC;
+                            color: #a2a2a2;
+                            text-shadow: 0 0 11px #6b6b6b;
+                        }
+                        .lobby_mapinfo_game{ 
+                            display: block;
+                            flex: 1;
+                            font-size: 15px;
+                            font-family: Conduit ITC;
+                            color: #a2a2a2;
+                            text-shadow: 0 0 11px #6b6b6b;
+
+                        }
+                        .lobby_mapinfo_teams { 
+                            display: block;
+                            flex: 1;
+                            font-size: 15px;
+                            font-family: Conduit ITC;
+                            color: #a2a2a2;
+                            text-shadow: 0 0 11px #6b6b6b;
+
+                        }
+                        .lobby_mapinfo_leader { 
+                            display: block;
+                            flex: 1;
+                            font-size: 15px;
+                            font-family: Conduit ITC;
+                            color: #a2a2a2;
+                            text-shadow: 0 0 11px #6b6b6b;
+                        }
+                        .lobby_mapinfo_quote { 
+                            display: block;
+                            flex: 1;
+                            font-size: 15px;
+                            font-family: Conduit ITC;
+                            color: #a2a2a2;
+                            text-shadow: 0 0 11px #6b6b6b;
+                        }
+                        .lobby_mapinfo_gamequote { 
+                            display: block;
+                            flex: 1;
+                            font-size: 15px;
+                            font-family: Conduit ITC;
+                            color: #a2a2a2;
+                            text-shadow: 0 0 11px #6b6b6b;
+                        }
+                    .lobby_mapstate_container {
+                        display: flex;
+                        flex-direction: column;
+                        margin-top: 10px;
+                        margin-left: 10px;
+                        margin-right: 10px;
+                        padding-bottom: 10px;
+                    }
+                        .lobby_mapstate_status { 
+                            display: block;
+                            flex: 1;
+                            font-size: 20px;
+                            font-family: Conduit ITC;
+                            color: #a2a2a2;
+                            text-shadow: 0 0 11px #6b6b6b;
+                        }
+                        .lobby_mapstate_joinable { 
+                            display: block;
+                            flex: 1;
+                            font-size: 15px;
+                            font-family: Conduit ITC;
+                            color: #a2a2a2;
+                            text-shadow: 0 0 11px #6b6b6b;
+                        }
+                        .lobby_mapstate_party { 
+                            display: block;
+                            flex: 1;
+                            font-size: 15px;
+                            font-family: Conduit ITC;
+                            color: #a2a2a2;
+                            text-shadow: 0 0 11px #6b6b6b;
+                        }
+                        .lobby_mapstate_version {
+                            display: block;
+                            flex: 1;
+                            font-size: 15px;
+                            font-family: Conduit ITC;
+                            color: #a2a2a2;
+                            text-shadow: 0 0 11px #6b6b6b;
+                        }
+            .lobby_info_footer { 
+                flex: 1;
+                margin: 0px 30px 30px 30px;
+                display: flex;
+                flex-direction: column;
+            }
+                .lobby_mapstat_header {
+                    height: 50px;
+                    display: flex;
+                    flex-direction: row;
+                }
+                    .lobby_mapstat_menu_info {
+                        width: 300px;
+                        height: 50px;
+                        background-color: rgba(10, 10, 10, 0.8);
+                        background-image: url(img/over.png);
+                        border-top: 1px solid rgb(80,80,80);
+                        border-left: 1px solid rgb(80,80,80);
+                        border-right: 1px solid rgb(80,80,80);
+                        box-shadow: 0 0 30px 6px black;
+                        display: flex;
+                        box-sizing: border-box;
+                    }
+                        .lobby_mapstat_img { 
+                            width: 40px;
+                            margin: 5px;
+                        }
+                        .lobby_mapstat_title { 
+                            flex: 1;
+                            display: flex;
+                            flex-direction: column;
+                            margin: 5px 5px 5px 0px;
+                            border-left: 1px solid rgb(80,80,80);
+                            padding-left: 10px;
+                        }
+                            .lobby_mapstat_type, .lobby_mapstat_name { 
+                                flex: 1;
+                                color: #a2a2a2;
+                                text-shadow: 0 0 11px #6b6b6b;
+                                text-transform: uppercase;
+                                line-height: 20px;
+                            }
+                    .lobby_mapstat_menu_options {
+                        display: flex;
+                        flex-direction: row;
+                        margin: auto;
+                    }
+                        .lobby_mapstat_option_join, .lobby_mapstat_option_exit {
+                            display: flex;
+                            width: 135px;
+                            height: 30px;
+                            opacity: 0.5;
+                            transition: all 0.5s ease-in-out;
+                            cursor: pointer;
+                            pointer-events: auto;
+                        }
+                        .lobby_mapstat_option_join:hover, .lobby_mapstat_option_exit:hover {
+                            opacity: 1;                            
+                        }
+                            .lobby_option_join_img, .lobby_option_exit_img {
+                                width: 30px;
+                                background-size: 100% 100%;
+                                background-image: url("img/controller/a_1.png");
+                            }
+                                .lobby_option_join_img {
+                                    background-image: url("img/controller/a_1.png");
+                                }
+                                .lobby_option_exit_img {
+                                    background-image: url("img/controller/b_1.png");
+                                }
+                            .lobby_option_join_title, .lobby_option_exit_title {
+                                flex: 1;
+                                line-height: 30px;
+                                font-size: 20px;
+                                color: #dedede;
+                                text-shadow: 0 0 11px #6b6b6b;
+                                text-transform: uppercase;
+                            }
+                .lobby_mapstat_footer {
+                    flex: 1;
+                    background-size: 130px 75px;
+                    background-color: rgba(10, 10, 10, 0.8);
+                    background-image: url(img/over.png);
+                    border: 1px solid rgb(80,80,80);
+                    box-shadow: 0 0 30px 6px black;
+                    display: flex;
+                    flex-direction: row;
+                }
+                    .lobby_mapinfo_left {
+                        flex: 1;
+                        margin: 10px;
+                        width: 250px;
+                        border-right: 1px solid rgb(80,80,80);
+                        box-shadow: 16px 0 31px -15px black;
+                    }
+                        .lobby_mapinfo_left_stats {
+                            display: block;
+                            font-size: 15px;
+                            font-family: Conduit ITC;
+                            color: #a2a2a2;
+                            text-shadow: 0 0 11px #6b6b6b;
+                        }
+                    .lobby_mapinfo_right {
+                        flex: 1;
+                        margin: 10px 10px 10px 0px;
+                    }
+                        .mapinfo_stats_container {
+                            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+                        }
+                            .mapinfo_stats_title {
+                                display: block;
+                                font-size: 20px;
+                                font-family: Conduit ITC;
+                                color: #a2a2a2;
+                                text-shadow: 0 0 11px #6b6b6b;
+                            }
+                            .mapinfo_stats_info {
+                                margin-top: 10px;
+                                margin-bottom: 20px;
+                                height: 40px;
+                                position: relative;
+                                box-sizing: border-box;
+                            }
+                                .mapinfo_stats_info_outer {
+                                    top: 0px;
+                                    left: 0px;
+                                    width: 100%;
+                                    height: 100%;
+                                    position: absolute;
+                                    background-color: rgba(80,80,80, 0.5);
+                                    background-image: url(img/over.png);
+                                }
+                                .mapinfo_stats_info_inner {
+                                    top: 0px;
+                                    left: 0px;
+                                    width: 100%;
+                                    height: 100%;
+                                    position: absolute;
+                                    display: flex;
+                                    border: 1px solid rgb(120, 120, 120);
+                                    box-sizing: border-box;
+                                }
+                                    .mapinfo_stats_emblem {
+                                        width: 38px;
+                                    }
+                                    .mapinfo_stats_player {
+                                        flex: 1;
+                                        display: flex;
+                                    }
+                                        .mapinfo_stats_playerkills {
+                                            display: block;
+                                            flex: 1;
+                                            font-family: Conduit ITC;
+                                            color: #a2a2a2;
+                                            text-shadow: 0 0 11px #6b6b6b;
+                                            line-height: 40px;
+                                            text-align: center;
+                                        }
+                                        .mapinfo_stats_playerdeaths {
+                                            display: block;
+                                            flex: 1;
+                                            font-family: Conduit ITC;
+                                            color: #a2a2a2;
+                                            text-shadow: 0 0 11px #6b6b6b;
+                                            line-height: 40px;
+                                            text-align: center;
+                                        }
+                                        .mapinfo_stats_playerassists {
+                                            display: block;
+                                            flex: 1;
+                                            font-family: Conduit ITC;
+                                            color: #a2a2a2;
+                                            text-shadow: 0 0 11px #6b6b6b;
+                                            line-height: 40px;
+                                            text-align: center;
+                                        }
+                                        .mapinfo_stats_playerratio {
+                                            display: block;
+                                            flex: 1;
+                                            font-family: Conduit ITC;
+                                            color: #a2a2a2;
+                                            text-shadow: 0 0 11px #6b6b6b;
+                                            line-height: 40px;
+                                            text-align: center;
+                                        }
+        .lobby_players_container {
+            width: 450px;
+            display: flex;
+            flex-direction: column;
+            margin: 0px 30px 30px 0px;
+        }
+            .lobby_players_header { 
+                height: 30px;
+            }
+                .lobby_players_header_players { 
+                    height: 30px;
+                    line-height: 30px;
+                    text-align: center;
+                    display: block;
+                    font-size: 18px;
+                    font-family: Conduit ITC;
+                    color: #9e9e9e;
+                    text-shadow: 0 0 10px #888787;
+                }
+            .lobby_players_footer { 
+                flex: 1;
+            }
+
+/*=================================================*/
+/*=                 PLAYER SLOTS                  =*/
+/*=================================================*/
+
+.player_slots {
+    height: 100%;
+}
+    .player_slot {
+        height: 35px;
+        position: relative;
+        margin-bottom: 3px;
+    }
+        .player_slot_outer {
+            display: flex;
+            flex-direction: row;
+        }
+            .player_slot_inner1 {
+                width: 28px;
+                position: relative;
+            }
+                .player_slot_voice {
+                    top: 50%;
+                    left: 50%;
+                    width: 22px;
+                    height: 22px;
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                }
+            .player_slot_inner2 {
+                flex: 1;
+                border: 1px solid rgb(62, 62, 62);
+                box-sizing: border-box;
+                position: relative;
+                pointer-events: auto;
+                cursor: pointer;
+            }
+                .player_slot_color {
+                    top: 0px;
+                    left: 0px;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    background-size: 100% 100%;
+                    background-color: #dedede;
+                }
+                .player_slot_color_overlay {
+                    top: 0px;
+                    left: 0px;
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    background-repeat: repeat-x repeat-y;
+                    background-image: url(img/over.png);
+                }
+                .player_slot_content {
+                    height: 100%;
+                    position: relative;
+                    display: flex;
+                }
+                    .player_slot_emblem {
+                        width: 35px;
+                        height: 100%;
+                        background-size: 100% 100%;
+                        background-image: url(img/emblems/default.png);
+                        border-right: 1px solid rgb(62, 62, 62);
+                        box-shadow: 1px 0 20px -5px black;
+                    }
+                    .player_slot_name_container { 
+                        margin-left: 10px;
+                        flex: 1;
+                        overflow: hidden;
+                    }
+                        .player_slot_name { 
+                            height: 100%;
+                            line-height: 35px;
+                            font-size: 15px;
+                            color: #f1f1f1;
+                            text-shadow: 0 0 7px black;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            display: block;
+                        }
+                        .player_slot_state {
+                            width: 20px;
+                            height: 20px;
+                            margin: 7px;
+                            background-size: 100% 100%;
+                            background-repeat: no-repeat no-repeat;
+                            background-image: url(img/state/alive_1.png);
+                        }
+
+/*=================================================*/
+/*=                  CONTROLLERS                  =*/
+/*=================================================*/
+
+.controller_container {
+    left: 50%;
+    bottom: 0px;
+    height: 40px;
+    opacity: 1;
+    position: absolute;
+    transform: translate(-50%, -30px);
+    border: 1px solid rgba(120,120,120, 0.5);
+    background-color: rgba(20,20,20, 1);
+    background-image: url(img/over.png);
+    box-shadow: 0 0 20px 5px black;
+    transition: all 0.4s ease-in-out;
+    display: flex;
+    flex-direction: row;
+    border-radius: 20px;
+}
+.controller_container.toggled {
+    height: 40px;
+    transform: translate(-50%, -30px);
+    opacity: 1;
+}
+.controller_container:not(.toggled) {
+    height: 40px;
+    opacity: 0;
+}
+    .controller_port_container {
+        width: 30px;
+        height: 30px;
+        margin: 5px;
+        position: relative;
+    }
+        .controller_port_img { 
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+        .controller_port_lay { 
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            border-radius: 50%;
+        }
+            .controller_port_lay.toggled {
+                animation: connected 1s infinite;
+            }
+            .controller_port_lay:not(.toggled) {
+                animation: none;
+                box-shadow: 0 0 0 rgba(204, 169, 44, 0.4);
+            }
+    .controller_port_title {
+        margin: 5px 10px 5px 0px;
+        line-height: 30px;
+        display: block;
+        color: #f1f1f1;
+        flex: 1;
+        text-shadow: 0 0 10px #b1b1b1;
+    }
+/*===============FOOTER====================*/
+.footer {
+max-width: 1322px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent !important;
+}
+
+.content_footer_legal {
+    margin: 40px auto auto auto;
+    text-transform: uppercase;
+    list-style: none;
+    text-shadow: 1px 0px 5px #626262;
+    display: block;
+}
+    .content_footer_legal p {
+        color: #bababa;
+        text-shadow: 1px 0px 5px #606060;
+        letter-spacing: .5px;
+    }
+        .content_footer_legal p a {
+            color: #bababa;
+        }
+        .content_footer_legal p a:hover {
+            color: #fff;
+        }
+
+/*===============FOOTER LOGOS====================*/
+
+.content_footer_logos {
+    margin: 10px auto 1.2vh auto;
+}
+.content_footer_logos ul {
+        text-transform: uppercase;
+        list-style: none;
+        display: block;
+}
+.content_footer_logos ul li { 
+            display: inline; 
+            padding-right: 4px;
+            letter-spacing: 1px;
+}
+    .content_footer_logos ul li a {
+                color: #bababa;
+                text-shadow: 1px 0px 5px #606060;
+                text-decoration: none;
+    }
+    .content_footer_logos ul li a:hover {
+                color: white;
+    }
+            .content_footer_logos ul li span {
+                background-size: 16px 16px;
+                background-repeat: no-repeat;
+                text-align: center;
+                padding: 0px 0px 0px 20px;
+                white-space:nowrap;
+            }
+            .content_footer_logos ul li span.footer-bg-logo {
+                    background-image: url(//dewsha.re/site/src/images/icons/bg-icon.png);
+            }
+    .content_footer_logos ul li span.footer-hv-logo { 
+                    background-image: url(//dewsha.re/site/src/images/icons/hv-icon.png);
+    }
+                .content_footer_logos ul li span.footer-fs-logo { 
+                    background-image: url(//dewsha.re/site/src/images/icons/fs-icon.png);
+    }
+
+            .content_navigation_footer {
+                padding: 0px 0px 0px 20px;
+                height: 25px;
+            }
+                .content_navigation_footer li {
+                    line-height: 25px;
+                    font-size: 11px;
+                }
+                    .content_navigation_footer li i {
+                        font-size: 7px;
+                    }
+
+@keyframes connected {
+    0% { box-shadow: 0 0 0 0 rgba(61, 215, 0, 0.5); }
+    50% { box-shadow: 0 0 0 20px rgba(112, 253, 101, 0); }
+    100% {  box-shadow: 0 0 0 0 rgba(61, 215, 0, 0); }
+}

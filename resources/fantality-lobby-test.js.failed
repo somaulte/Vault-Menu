@@ -1,0 +1,360 @@
+var lobby;
+var lobbyDelay = 2500;
+var lobbyClearing = false;
+var lobbyAbort = false;
+var lobbyAbortDelay = 2500;
+var lobbyTimeout;
+var lobbyAddress;
+var lobbyPlayers = [];
+var lobbyPlayersList = [];
+var lobbyPlayerProfiles = [];
+
+function Lobby(address) {
+    "use strict";
+
+    var self = this;
+
+    //=================================================//
+    //=                Lobby Functions                =//
+    //=================================================//
+    // TODO:
+    //
+    //
+    //
+
+    this.lobbyInit = function(address) {
+        try 
+        {
+
+            $(".lobby").addClass("toggled");
+            $(".player_slots").empty();
+            $(".player_slots").on("click", ".player_slot_inner2", self.lobbySlotClick);
+            $(".lobby_mapstat_menu_options").on("click", ".lobby_mapstat_option_join", self.lobbyJoinClick);
+            $(".lobby_mapstat_menu_options").on("click", ".lobby_mapstat_option_exit", self.lobbyExitClick);
+
+            lobbyClearing = false;
+            lobbyAbort = false;
+            lobbyTimeout = null
+            lobbyPlayers = [];
+            lobbyPlayersList = [];
+            lobbyAddress = address;
+            
+            if (browser)
+                browser = null;
+
+            setTimeout(function() {
+                lobbyAbort = true;
+            }, lobbyAbortDelay);
+
+        }
+        catch (ex) {
+            console.log(ex.message);
+            return false;
+        }
+    }
+    this.lobbyClear = function () {
+        try 
+        {
+
+            lobbyClearing = true; 
+
+            //Abort Requests
+            clearTimeout(lobbyTimeout);
+            clearXHRRequests(serverListXHR);
+            clearXHRRequests(serverInfoXHR);
+            clearXHRRequests(serverPlayerXHR);
+            
+            serverPlayerEmblems = [];
+
+            //Set browser state
+            $(".lobby").removeClass("toggled");
+            $(".player_slots").empty();
+
+            $(".player_slots").off("click");
+            $(".lobby_mapstat_menu_options").off("click");
+
+        }
+        catch (ex) {
+            console.log(ex.message);
+            return false;
+        }
+    }
+    this.lobbyFetch = function () {
+        try {
+
+            getServerInfo("lobby", lobbyAddress, function (serverInfo) {
+
+                if (serverInfo && self.lobbyUpdate(serverInfo)) {
+                    getPlayerSort(serverInfo, function(players) {
+                        self.lobbyRemove();
+                        for (var index in players) {
+                            self.playerCreate({ user: players[index], lobby: serverInfo });
+                        }
+                    });
+                }
+
+                lobbyTimeout = setTimeout(function () {
+                    self.lobbyFetch();
+                }, lobbyDelay);
+
+            });
+        }
+        catch (ex) {
+            console.log(ex.message);
+            return false;
+        }
+    }
+    this.lobbyRemove = function () {
+        try {
+            var slots = document.getElementsByClassName('player_slots')[0];
+            if (slots) {
+                $(slots).empty();
+                return true;
+            }
+            return false;
+        }
+        catch (ex) {
+            console.log(ex.message);
+            return false;
+        }
+    }
+    this.lobbyUpdate = function (cache) {
+        try {
+            var c = $(".lobby")[0];
+            var server = getServerData("server", cache);
+            if (server && c) {
+
+                $($(c).find(".lobby_players_header_players").text(server.players.prefix));
+
+                $($(c).find(".lobby_info_title").text(server.status.serverTitle));
+                $($(c).find(".lobby_info_img").attr("src", server.map.image));
+                $($(c).find(".lobby_maptype_name").text(server.map.name));
+                $($(c).find(".lobby_maptype_type").text(server.map.type.prefix));
+                $($(c).find(".lobby_mapinfo_game_name").text("Variant: {0}".format(server.variant.custo)));
+                $($(c).find(".lobby_mapinfo_game").text("Gametype: {0}".format(server.variant.prefix)));
+                $($(c).find(".lobby_mapinfo_quote").html("<b>Map Description:</b><br />\"{0}\"".format(server.map.quote)));
+                $($(c).find(".lobby_mapinfo_gamequote").html("<br /><br /><b>Game Description:</b><br />\"{0}\"".format(server.variant.quote)));
+                $($(c).find(".lobby_mapinfo_teams").text("Teams: {0}".format(server.teams.count)));
+                $($(c).find(".lobby_mapinfo_leader").text("Leader: {0}".format(server.teams.leader.prefix)));
+                $($(c).find(".lobby_mapstate_status").text(server.status.prefix));
+                $($(c).find(".lobby_mapstate_joinable").text("Joinable: {0} |  Slots Available: {1}".format(server.status.joinable, server.status.slots)));
+                $($(c).find(".lobby_mapstate_party").text("Host: {0}".format(server.host)));
+                $($(c).find(".lobby_mapstate_version").text("Version: {0}".format(server.version.lobby)));
+
+                $($(c).find(".lobby_mapstat_img").attr("src", server.variant.image));
+                $($(c).find(".lobby_mapstat_type").text(server.variant.name));
+                $($(c).find(".lobby_mapstat_name").text("ON {0}".format(server.map.name)));
+
+                if (server.players.mvp.name) {
+                    $($(c).find(".mapinfo_stats_title").text("MVP: {0}".format(server.players.mvp.data.name)));
+                    $($(c).find(".mapinfo_stats_info_outer").css("background-color", server.players.mvp.data.team.colorRgba));
+                    $($(c).find(".mapinfo_stats_emblem").attr("src", server.players.mvp.data.profile.emblem.image)); 
+                    $($(c).find(".mapinfo_stats_playerkills").text("{0} Kill(s)".format(server.players.mvp.data.kills)));
+                    $($(c).find(".mapinfo_stats_playerdeaths").text("{0} Death(s)".format(server.players.mvp.data.deaths)));
+                    $($(c).find(".mapinfo_stats_playerassists").text("{0} Assist(s)".format(server.players.mvp.data.assists)));
+                    $($(c).find(".mapinfo_stats_playerratio").text("{0} KD".format(server.players.mvp.data.ratio)));
+                }
+                
+                return true;
+
+            }
+            return false;
+        }
+        catch (ex) {
+            console.log(ex.message);
+            return false;
+        }
+    }
+    this.sendCommand = function(command, args) { 
+        try 
+        {
+            if (command) {
+                switch (command) {
+                    case "join": break;
+                    case "exit":
+                        return (self.lobbyExitClick(null));
+                        break;
+                    default: return false;
+                }
+            }
+        } 
+        catch (ex) {
+            console.log(ex.message);
+            return false;
+        }
+    }
+
+    //=================================================//
+    //=                Player Functions               =//
+    //=================================================//
+    // TODO:
+    //
+    //
+    //
+
+    this.playerCreate = function (cache) {
+        try {
+            var slots = document.getElementsByClassName("player_slots")[0];
+            if (slots) {
+                var user = getServerData("user", cache);
+                if (user) {
+                    var slot = self.playerElement(cache);
+                    if (slot) {
+                        slot.innerHTML =
+                            '<div class="player_slot_outer">' + 
+                                '<div class="player_slot_inner1">' + 
+                                    '<img class="player_slot_voice" src="resources/img/voice/voice_0.png" />' + 
+                                '</div>' + 
+                                '<div class="player_slot_inner2">' +
+                                    '<img class="player_slot_color_overlay" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />' + 
+                                    '<div class="player_slot_content">' + 
+                                        '<img class="player_slot_emblem" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />' + 
+                                        '<div class="player_slot_name_container">' + 
+                                            '<span class="player_slot_name">' + user.name + '</span>' + 
+                                        '</div>' + 
+                                        '<img class="player_slot_state" src="' + user.state.image + '" />' + 
+                                    '</div>' + 
+                                '</div>' + 
+                            '</div>';
+                            if (slot.innerHTML) {
+
+                                var emblem = getServerData("profile.emblem", user);
+
+                                $(slot).find(".player_slot_emblem").attr("src", (emblem.image) ? emblem.image : "resources/img/emblems/default.png");
+                                $(slot).find(".player_slot_inner2").css("background-color", 
+                                    (emblem && emblem.error) 
+                                        ? emblem.color 
+                                        : user.team.color || "rgba(98, 98, 98, 0.5)");
+
+                                slots.appendChild(slot);
+                                return true;
+
+                            }
+                    }
+                }
+            }
+        }
+        catch (ex) {
+            console.log(ex.message);
+            return false;
+        }
+        return false;
+    }
+    this.playerElement = function(cache) {
+        try {
+            var slot = document.createElement('div');
+                slot.setAttribute('class', 'player_slot');
+                slot.setAttribute('name', cache.user.name);
+                slot.setAttribute('id', cache.user.uid);
+                slot.innerHTML = '';
+            return (slot) ? slot : null;
+        }
+        catch (e) {
+            console.log(e.message);
+            return null;
+        }
+    }
+
+    //=================================================//
+    //=                  Lobby Events                 =//
+    //=================================================//
+    // TODO: Fetch player ranks directly from browser and display details
+    //
+    //
+    //
+	
+
+	function dewWebSocket(establish) {
+    var Socket = null;
+    this.connect = function (establish) {
+        if (establish) {
+            if ("WebSocket" in window || "MozWebSocket" in window) {
+                window.WebSocket = window.WebSocket || window.MozWebSocket;
+                Socket = new WebSocket("ws://127.0.0.1:11776", "dew-rcon");
+                return;
+            }
+        }
+    };
+    this.send = function (data) {
+        try {
+            if (Socket && Socket.OPEN) {
+                Socket.send(data);
+            }
+        } catch (e) {
+            console.log(" > Exception: " + e.message);
+            Socket = null;
+        }
+    };
+    this.close = function () {
+        if (Socket) {
+            try {
+                Socket.close();
+                Socket = null;
+            }
+            catch (e) {
+                console.log(" > Exception: " + e.message);
+                Socket = null;
+            }
+        }
+    };
+    this.connect(establish);
+	}
+	var dew = new dewWebSocket(true);
+	
+
+	this.lobbySlotClick = function(event) {
+		  try 
+		  {
+			  var t = $(event.target)[0];
+			  if (t) {
+				  var slot = getServerFromTrigger(t, "player_slot", "player_slots");
+				  if (slot) {
+					  
+					  var playerName = $(slot).attr("name");
+					  var PlayerID = "";
+					  for (var i in serverPlayerEmblems) {
+						  var emblem = serverPlayerEmblems[i];
+						  if (emblem && (new String(emblem.name).valueOf() == new String(playerName).valueOf())) {
+							 PlayerID = emblem.id;
+						  }
+					  } 
+					  if(PlayerID)
+						  window.open('http://halostats.click/Player/'+ PlayerID, playerName, "height=600,width=1200");
+				  }
+			  }
+		  } 
+		  catch (ex) {
+			  console.log(ex.message);
+			  return false;
+		  }
+	  }
+    this.lobbyJoinClick = function(event) {
+        try 
+        {
+            var t = $(event.target)[0];
+            if (t) {
+				dew.send('server.connect ' + lobbyAddress);
+            }
+        } 
+        catch (ex) {
+            console.log(ex.message);
+            return false;
+        }
+    }
+    this.lobbyExitClick = function(event) {
+        try 
+        {
+            self.lobbyClear();
+            browser = new Browser();
+            if (browser) { 
+                browser.browserInit();
+                browser.browserFetch();
+            }
+        } 
+        catch (ex) {
+            console.log(ex.message);
+            return false;
+        }
+    }
+
+}
