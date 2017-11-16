@@ -6,6 +6,8 @@ http://browser.haloshare.org/ -- to see it in action. Do not rehost without perm
 
 TODO for 0.6:
 ```
+- fix resolution issues, maybe use bootstrap
+- ability to favorite and revisit servers more easily
 - organizing & sorting by ping, location, host, name, etc
 - link actual stats & emblems within lobbies from HaloStats api
 - joining locked servers doesnt work yet; planned fix for 0.6 overlay
