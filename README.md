@@ -4,4 +4,11 @@
 
 http://browser.haloshare.org/ -- to see it in action. Do not rehost without permission.
 
-`TODO: joining locked servers doesnt work yet; planned fix for 0.6 Vault-Menu browser overlay.`
+TODO for 0.6:
+```
+- organizing & sorting by ping, location, host, name, etc
+- link actual stats & emblems within lobbies from HaloStats api
+- joining locked servers doesnt work yet; planned fix for 0.6 overlay
+- sometype of match-making system by auto-joining non-announced servers
+- friends list working with fileshare, displays who's online & in which server etc
+```
