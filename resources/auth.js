@@ -18,7 +18,7 @@ function Auth() {
         try 
         {
             $.ajax({
-                url: "http://halovau.lt/inc/api/isLogged.api" + '?callback=?',
+                url: "http://haloshare.org/inc/api/isLogged.api" + '?callback=?',
                 type: "GET",
                 dataType: "jsonp",
                 crossDomain: true,

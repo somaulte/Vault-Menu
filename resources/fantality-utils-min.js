@@ -341,7 +341,7 @@ function getPlayerInfo(name, callback) {
         else {
             $.ajax({
 				crossOrigin: true,
-                url: "http://browser.halovau.lt/getStats.php?name=" + name,
+                url: "http://browser.haloshare.org/getStats.php?name=" + name,
                 dataType: "json",
                 timeout: 5000,
                 error: function () {

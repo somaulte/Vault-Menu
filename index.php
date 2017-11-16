@@ -10,8 +10,8 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="resources/fantality-font-min.css" rel="stylesheet" />
     <link href="resources/fantality-main.css" rel="stylesheet" />
-    <link type="image/x-icon" rel="icon" href="//halovau.lt/favicon.ico" />
-    <link type="image/x-icon" rel="shortcut icon" href="//halovau.lt/favicon.ico" />
+    <link type="image/x-icon" rel="icon" href="//haloshare.org/favicon.ico" />
+    <link type="image/x-icon" rel="shortcut icon" href="//haloshare.org/favicon.ico" />
 
     <!-- LINKS -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
                     <li data-filter="all" class="nav_footer_item">All</li>
                     <li data-filter="media" class="nav_footer_item">Maps</li>
                     <li data-filter="files" class="nav_footer_item">Files</li>
-                    <li data-filter="mapvar" onclick="location='//halovau.lt/forge.php';" class="nav_footer_item">Media</li>
+                    <li data-filter="mapvar" onclick="location='//haloshare.org/forge.php';" class="nav_footer_item">Media</li>
                     <li data-filter="community" class="nav_footer_item">Community</li>
 					<li class="nav_footer_item selected"><i class="nav_header_item_arrow fa fa-chevron-down" aria-hidden="true"></i>Servers</li>
                 </ul>
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="content_login_dropdown">
-                        <form class="login_dropdown_panel" action="//halovau.lt" method="post">
+                        <form class="login_dropdown_panel" action="//haloshare.org" method="post">
                             <div class="login_dropdown_panel_container">
                                 <input class="login_dropdown_username" type="text" name="uname" placeholder="Username">
                                 <input class="login_dropdown_password" type="password" name="pass" placeholder="Password">
@@ -104,7 +104,7 @@
 					<span class="footer-bg-logo"><a href="//www.bungie.net/">Bungie</a></span>
 				</li>
 				<li>
-					<span class="footer-hv-logo"><a href="//halovau.lt/">HaloVault</a></span>
+					<span class="footer-hv-logo"><a href="//haloshare.org/">HaloVault</a></span>
 				</li>
 				<li>
 					<span class="footer-fs-logo"><a href="//www.fantalitystudios.com/">FantalityStudios</a></span>

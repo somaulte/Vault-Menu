@@ -5,9 +5,9 @@ function Navigation() {
     var self = this;
     var navVaultPages = [
         "",
-        "http://halovau.lt/inc/api/listMaps.api",
-        "http://halovau.lt/inc/api/listFiles.api",
-        "http://halovau.lt/inc/api/listTopics.api"
+        "http://haloshare.org/inc/api/listMaps.api",
+        "http://haloshare.org/inc/api/listFiles.api",
+        "http://haloshare.org/inc/api/listTopics.api"
     ];
     var navRedditPages = [
         "", "", ""
