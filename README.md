@@ -6,14 +6,14 @@ http://browser.haloshare.org/ -- to see it in action. Do not rehost without perm
 
 TODO for 0.6:
 ```
-- fix resolution issues, maybe use bootstrap
-- ability to favorite and revisit servers more easily
-- organizing & sorting by ping, location, host, name, etc
+- fix multiple resolution issues, maybe use bootstrap
+- add ability to favorite & revisit servers more easily
+- support to organize by ping, location, host, name, etc
 - make top navigation functional, and link it back to DewShare
-- link actual stats & emblems within lobbies from HaloStats api
+- link actual rank & emblems within lobbies from HaloStats api
 - joining locked servers doesnt work yet; planned fix for 0.6 overlay
-- sometype of match-making system by auto-joining non-announced servers
 - friends list working with fileshare, displays who's online & in which server etc
+- sometype of match-making system by auto-joining non-announced servers based on HaloStats ranks
 ```
 
 `Credits: Twigzie for base design & structure. soular00t for design/script cleanup.`
