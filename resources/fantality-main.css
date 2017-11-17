@@ -67,14 +67,15 @@ body {
 	max-width: 1322px;
     z-index: 100;
 	display: block;
-	width:70%;
-	font-size:13px;
+	width: 70%;
+	font-size: 13px;
     background-color: #1d1d1d;
     box-shadow: 0 2px 10px 0px #161616;
     position: fixed;
     top:0px;
     float:center;
     margin:0 auto;
+    z-index: 0!important;
 }
 
     .content_navigation_container {
@@ -334,7 +335,7 @@ color:#999;
     background: #FF0000;
 }
     .browser_slot {
-        max-width: 33%;
+        min-width: 33%;
         width:33%;
         height: 200px;
         position: relative;

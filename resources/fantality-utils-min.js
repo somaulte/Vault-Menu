@@ -1060,9 +1060,9 @@ function isPregame(cache) {
 function updateBrowserList() {
     var c = $(".browser_slots");
     if (c && c.children().length > 9)
-        c.css("width", "1035px");
+        c.css("width", "100%");
     else
-        c.css("width", "1022px");
+        c.css("width", "100%");
 }
 
 String.prototype.format = function () {
