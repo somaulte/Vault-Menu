@@ -456,7 +456,7 @@ $(document).ready(function() {
             {
                 switch (event.which) {
                     case 27: //Esc
-                        browser.browserClear();
+                        //browser.browserClear();
 						dew.hide();
                     break;
                     default: break;
