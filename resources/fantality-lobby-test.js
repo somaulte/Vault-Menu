@@ -327,7 +327,7 @@ function Lobby(address) {
         {
             var t = $(event.target)[0];
             if (t) {
-				dew.send('server.connect ' + lobbyAddress);
+				dew.command('server.connect ' + lobbyAddress);
             }
         } 
         catch (ex) {
